@@ -1,15 +1,7 @@
 class Solution {
 public:
-    int cnt = 0;
+    //int cnt = 0;
     void merge(vector<int>& nums,int s,int mid, int e){
-
-        int j = mid+1;
-        for(int i = s; i<=mid; i++){
-            while(j <= e && (long long)nums[i] > 2LL * nums[j]) {
-                j++;
-            }
-            cnt += j - (mid + 1);
-        }
 
         vector<int> temp;
         int left = s;
@@ -32,19 +24,33 @@ public:
             nums[s+i] = temp[i];
         }
     }
+    int cntpairs(vector<int>& nums,int s,int mid, int e){
+        int j = mid+1;
+        int cnt = 0;
+        for(int i = s; i<=mid; i++){
+            while(j <= e && (long long)nums[i] > 2LL * nums[j]) {
+                j++;
+            }
+            cnt += j - (mid + 1);
+        }
+        return cnt;
+    }
 
-    void mergesort(vector<int>& nums,int s, int e){
+    int mergesort(vector<int>& nums,int s, int e){
+        int cnt = 0;
         if(s>=e){
-            return;
+            return cnt;
         }
         int mid = s + (e-s)/2;
-        mergesort(nums,s,mid);
-        mergesort(nums,mid+1,e);
+        cnt += mergesort(nums,s,mid);
+        cnt += mergesort(nums,mid+1,e);
+        cnt += cntpairs(nums,s,mid,e);
         merge(nums,s,mid,e);
+        return cnt;
     }
 
     int reversePairs(vector<int>& nums) {
-        mergesort(nums, 0, nums.size()-1);
-        return cnt;
+        return mergesort(nums, 0, nums.size()-1);
+        //return cnt;
     }
 };
