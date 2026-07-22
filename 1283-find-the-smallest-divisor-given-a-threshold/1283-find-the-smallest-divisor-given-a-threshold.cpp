@@ -8,10 +8,7 @@ public:
                 return false;
             }
         }
-        if(sum <= threshold){
-            return true;
-        }
-        return false;
+        return true;
 
     }
     int smallestDivisor(vector<int>& nums, int threshold) {
