@@ -12,7 +12,7 @@ public:
                 j++;
             }
             else{
-                swap(nums[++i], nums[j++]);
+                nums[++i] = nums[j++];
             }
         }
         return i+1;
