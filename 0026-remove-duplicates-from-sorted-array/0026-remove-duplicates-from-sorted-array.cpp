@@ -8,12 +8,10 @@ public:
             return n;
         }
         while(j<n){
-            if(nums[i] == nums[j]){
-                j++;
+            if(nums[i] != nums[j]){
+                nums[++i] = nums[j];
             }
-            else{
-                nums[++i] = nums[j++];
-            }
+            j++;
         }
         return i+1;
     }
