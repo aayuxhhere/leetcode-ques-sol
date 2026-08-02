@@ -5,23 +5,14 @@ public:
         string ans = "";
         for(int i=0; i<s.size(); i++){
             string word = "";
-            while(i < s.length() && s[i] == ' '){
-                i++;
-            }
             while(i < s.length() && s[i] != ' '){
-                word += s[i];
-                i++;
+                word += s[i++];
             }
             reverse(word.begin(), word.end());
-            if(word.empty()) continue;
-            if(ans.length() != 0){
+            if(word.length() > 0){
                 ans += " " + word;
             }
-            else{
-                ans += word;
-            }
-            
         }
-        return ans;
+        return ans.substr(1);
     }
 };
