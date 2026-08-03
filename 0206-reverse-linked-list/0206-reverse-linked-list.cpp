@@ -14,18 +14,15 @@ public:
         if(head == NULL || head->next == NULL){
             return head;
         }
-        stack<int> st;
         ListNode* temp = head;
+        ListNode* front = head;
+        ListNode* prev = NULL;
         while(temp!=NULL){
-            st.push(temp->val);
-            temp = temp->next;
+            front = temp->next;
+            temp->next = prev;
+            prev = temp;
+            temp = front;
         }
-        temp = head;
-        while(temp!=NULL && !st.empty()){
-            temp->val = st.top();
-            st.pop();
-            temp = temp->next;
-        }
-        return head;
+        return prev;
     }
 };
